@@ -1,0 +1,28 @@
+{
+    "name": "angular-restful-service",
+    "version": "0.2.28",
+    "description": "restful service for angular",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "iGaves",
+    "license": "MIT",
+    "dependencies": {
+    },
+    "devDependencies": {
+        "typescript": "^2.0.10",
+        "@angular/common": "^2.4.10",
+        "@angular/compiler": "^2.4.10",
+        "@angular/core": "^2.4.10",
+        "@angular/forms": "^2.4.10",
+        "@angular/http": "^2.4.10",
+        "@angular/platform-browser": "^2.4.10",
+        "@angular/platform-browser-dynamic": "^2.4.10",
+        "@angular/router": "^3.4.10",
+        "core-js": "^2.4.1",
+        "rxjs": "^5.2.0",
+        "ts-helpers": "^1.1.1",
+        "zone.js": "^0.7.8"
+    }
+}
