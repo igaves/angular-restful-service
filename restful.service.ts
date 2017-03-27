@@ -1,4 +1,4 @@
-import {Http, Jsonp, Response} from "@angular/http";
+import {Http, Jsonp, Response, RequestOptions} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {QUERY} from "./core/QUERY";
@@ -38,7 +38,7 @@ export class RestfulService{
      * @override
      * @param response
      */
-    protected beforeFilter(response:Response):void{
+    protected beforeFilter(requestOptions:RequestOptions):void{
     }
     /**
      * 查找满足条件 第一条

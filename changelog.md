@@ -10,6 +10,7 @@ Angular Restful Injectable Service 。
    
 ### change logs 0.2.28
 Add beforeFilter,you can modify all Response attributes in request;
+
     public beforeFilter(res:Response):void{
         let headers = res.headers;
         headers.set(
@@ -20,6 +21,7 @@ Add beforeFilter,you can modify all Response attributes in request;
     
 ### change logs 0.2.27
 Add @BODY for function
+    
     @POST('~/:id');
     function setValueOf(@PATH() id:number,@BODY() props:Object){return null}
     
