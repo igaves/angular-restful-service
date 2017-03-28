@@ -1,6 +1,6 @@
 {
     "name": "angular-restful-service",
-    "version": "0.2.29",
+    "version": "0.2.30",
     "description": "restful service for angular",
     "main": "index.ts",
     "scripts": {
@@ -11,18 +11,18 @@
     "dependencies": {
     },
     "devDependencies": {
-        "typescript": "^2.0.10",
-        "@angular/common": "^2.4.10",
-        "@angular/compiler": "^2.4.10",
-        "@angular/core": "^2.4.10",
-        "@angular/forms": "^2.4.10",
-        "@angular/http": "^2.4.10",
-        "@angular/platform-browser": "^2.4.10",
-        "@angular/platform-browser-dynamic": "^2.4.10",
-        "@angular/router": "^3.4.10",
+        "@angular/common": "^4.0.0",
+        "@angular/compiler": "^4.0.0",
+        "@angular/core": "^4.0.0",
+        "@angular/forms": "^4.0.0",
+        "@angular/http": "^4.0.0",
+        "@angular/platform-browser": "^4.0.0",
+        "@angular/platform-browser-dynamic": "^4.0.0",
+        "@angular/router": "^4.0.0",
+        "angular-restful-service": "^0.2.27",
         "core-js": "^2.4.1",
         "rxjs": "^5.2.0",
         "ts-helpers": "^1.1.1",
-        "zone.js": "^0.7.8"
+        "zone.js": "^0.8.5"
     }
 }

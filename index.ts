@@ -1,6 +1,6 @@
 import {NgModule, ModuleWithProviders} from "@angular/core";
 import {RestfulService} from "./restful.service";
-import {HttpModule} from "@angular/http";
+import {HttpModule,JsonpModule} from "@angular/http";
 
 
 export * from "./core/GET";
@@ -22,7 +22,7 @@ const PROVIDERS: any[] = [
 
 @NgModule({
     providers: [PROVIDERS],
-    exports: [HttpModule]
+    exports: [HttpModule,JsonpModule]
 })
 export class RestfulServiceModule {
 }

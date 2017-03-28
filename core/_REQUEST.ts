@@ -1,11 +1,9 @@
 import {URLSearchParams, Headers, RequestOptions, RequestMethod, Request, Http, Response, Jsonp} from "@angular/http";
-
 import {PATH_KEYS} from "./PATH";
 import {JSONP_METHOD} from "./JSONP";
 import {DATA_TYPE} from "./DATA_TYPE";
 
 import 'rxjs/add/operator/map';
-import {Observable} from "rxjs/Observable";
 
 /**
  * rest 错误
@@ -163,6 +161,25 @@ function toParam(body) {
     };
     return buildParams('', body).join('&').replace(/%20/g, '+');
 }
+
+/**
+ * 修正jsonp问题
+ * issue: https://github.com/angular/angular/issues/3183
+ * @param url
+ * @returns {string}
+ */
+function resolveJSONPCallback(url:string){
+    if(/callback/i.test(url)){
+        url.replace(/callback=$(\w+)/i,'callback=JSONP_CALLBACK');
+    }else{
+        let split = '?';
+        if(/\?/.test(url)){
+            split = '&';
+        }
+        url += split+'callback=JSONP_CALLBACK';
+    }
+    return url;
+}
 /**
  * 动态创建各种 GET PATCH DELETE PUT OPTION POST Decorator
  * @param method {number} -请求ID 来自于 RequestMethod
@@ -197,6 +214,10 @@ export function createRequest<T>(method:number,dataType:DATA_TYPE,url?:string):F
             let requestTarget:Http;
             if(method == JSONP_METHOD){
                 requestTarget = this.jsonp;
+                headers.set('Accept','text/javascript');
+                method = RequestMethod.Get;
+
+                requestUrl= resolveJSONPCallback(requestUrl);
             }else{
                 requestTarget = this.http;
             }
@@ -219,6 +240,7 @@ export function createRequest<T>(method:number,dataType:DATA_TYPE,url?:string):F
             let observable = requestTarget.request(request);
 
             //set return type
+            //noinspection TypeScriptValidateTypes
             return observable.map((res:Response)=>{
                 let returnValue:any = res;
                 if(dataType == DATA_TYPE.json)  returnValue = res.json();
