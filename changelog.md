@@ -1,6 +1,6 @@
 ## XCMS RestService For Angular 
 
-@version 0.2.21 demo.
+@version 0.3.31 demo.
 
 Angular Restful Injectable Service 。
 
@@ -8,6 +8,14 @@ Angular Restful Injectable Service 。
 ## usage
     npm install angular-restful-service --save
    
+### change logs 0.3.31
+
+fixed BODY mark from array to index
+
+add HEADER decorator
+
+    @HEADER({'Content-Type','application/json'})
+
 ### change logs 0.2.28
 Add beforeFilter,you can modify all Response attributes in request;
 

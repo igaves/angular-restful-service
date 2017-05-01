@@ -1,6 +1,6 @@
 # RestfulService For Angular 
 
-@version 0.2.27
+@version 0.3.31
 
 Angular Restful Injectable Service 。
 
@@ -10,8 +10,12 @@ Angular Restful Injectable Service 。
 
 ### usage:
     npm install --save angular-restful-service@latest
-
-  note: all function is defined in my service
+    
+    ngModule({
+        imports: [
+            RestfulServiceModule,
+            ...
+              
 
 #### @URI 
 

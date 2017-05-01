@@ -91,6 +91,7 @@ function execByFilter(content:any,callName:string,afterFilter:Function,afterFilt
 function getBody(target: any, propertyKey: string,headers:Headers,args:any[]) {
     let contentType = headers.get('Content-Type');
 
+    console.log(target[`${propertyKey}_body`]);
     let body = args[target[`${propertyKey}_body`]]||{};
     let returnBody:any;
 
@@ -224,6 +225,7 @@ export function createRequest<T>(method:number,dataType:DATA_TYPE,url?:string):F
 
             let body = getBody(target,propertyKey,headers,args);
 
+            console.log(body)
             let requestOptions:RequestOptions = new RequestOptions({
                 url:requestUrl,
                 headers:headers,
