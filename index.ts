@@ -13,7 +13,9 @@ export * from "./core/QUERY";
 export * from "./core/URI";
 export * from "./core/JSONP";
 export * from "./core/DATA_TYPE";
-
+export * from './core/ContentType/Multipart';
+export * from './core/ContentType/JSON';
+export * from './core/ContentType/FormUrlEncoded';
 export * from "./restful.service";
 
 const PROVIDERS: any[] = [

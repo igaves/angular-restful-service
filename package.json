@@ -1,6 +1,6 @@
 {
     "name": "angular-restful-service",
-    "version": "0.2.31",
+    "version": "0.2.34",
     "description": "restful service for angular",
     "main": "index.ts",
     "scripts": {

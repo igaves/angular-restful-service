@@ -91,16 +91,17 @@ function execByFilter(content:any,callName:string,afterFilter:Function,afterFilt
 function getBody(target: any, propertyKey: string,headers:Headers,args:any[]) {
     let contentType = headers.get('Content-Type');
 
-    console.log(target[`${propertyKey}_body`]);
     let body = args[target[`${propertyKey}_body`]]||{};
     let returnBody:any;
 
 
 
-    if(/form-data/i.test(contentType)){
+    if(/form\-data/i.test(contentType)){
         let fd = new FormData();
         for(let key in body){
-            fd.append(key,body[key]);
+            let value = body[key];
+            fd.append(key,body[key],'1.jpeg');
+
         }
         returnBody = fd;
     }else if(/urlencoded/i.test(contentType)){
@@ -200,7 +201,7 @@ export function createRequest<T>(method:number,dataType:DATA_TYPE,url?:string):F
             if(Reflect.has(target,`${propertyKey}_url`)){
 
                 //替换对应URI
-                target[`${propertyKey}_url`] = target[`${propertyKey}_url`].replace(/^~/,this.URI);
+                target[`${propertyKey}_url`] = target[`${propertyKey}_url`].replace(/^[\/~]/,this.URI+'/');
 
                 //修理一下，这里可以用标准的target,property处理
                 requestUrl = getPathString(target,propertyKey,args);
@@ -225,7 +226,6 @@ export function createRequest<T>(method:number,dataType:DATA_TYPE,url?:string):F
 
             let body = getBody(target,propertyKey,headers,args);
 
-            console.log(body)
             let requestOptions:RequestOptions = new RequestOptions({
                 url:requestUrl,
                 headers:headers,
@@ -235,7 +235,10 @@ export function createRequest<T>(method:number,dataType:DATA_TYPE,url?:string):F
             });
 
 
-            this.beforeFilter(requestOptions);
+            if(this.beforeFilterExcept.indexOf(propertyKey)==-1){
+                this.beforeFilter(requestOptions);
+            }
+
 
             let request:Request = new Request(requestOptions);
 
