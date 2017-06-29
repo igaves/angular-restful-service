@@ -52,7 +52,7 @@ export class RestfulService{
      * 根据主键ID 查找第一条
      * @param id
      */
-    @GET("/:id")
+    @GET(":id")
     public find<T>(@PATH() id:string|number):Observable<T>{ return null}
     /**
      * 根据条件查找
@@ -87,15 +87,15 @@ export class RestfulService{
      * @param id
      * @param model<T>
      */
-    @PUT("/:id")
+    @PUT(":id")
     public update<T>(@PATH() id:number|string,@BODY() model:T){return null}
 
-    @PATCH('/:id')
+    @PATCH(':id')
     public patch<T>(@PATH() id:number|string,@BODY() property:Object){return null}
     /**
      * delete
      * @param id
      */
-    @DELETE('/:id')
+    @DELETE(':id')
     public delete<T>(@PATH() id:string){return null}
 }

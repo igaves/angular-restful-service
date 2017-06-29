@@ -4,6 +4,7 @@ import {JSONP_METHOD} from "./JSONP";
 import {DATA_TYPE} from "./DATA_TYPE";
 
 import 'rxjs/add/operator/map';
+import {QueryValueIndex} from "./QUERY";
 
 /**
  * rest 错误
@@ -24,13 +25,23 @@ function getURLSearchParams(target,propertyKey:string,args:any[]):URLSearchParam
 
     //这里做个
     let queryIndex = target[`${propertyKey}_query`]||[];
+
     for(let i=0;i<queryIndex.length;i++){
 
-        let query:Object = args[queryIndex[i]];
-        for(var key in query){
-            params.set(key,query[key]);
+        let queryStore:number|QueryValueIndex = queryIndex[i];
+
+        //也就说，queryparam是单值，需要用queryStore.key作为key
+        if(typeof queryStore == 'object'){
+            params.set(queryStore.key,args[queryStore.index]);
+        }else{
+            let queryParam = args[queryIndex[i]];
+            for(var key in queryParam){
+                params.set(key,queryParam[key]);
+            }
         }
     }
+
+
     return params;
 }
 
@@ -201,7 +212,10 @@ export function createRequest<T>(method:number,dataType:DATA_TYPE,url?:string):F
             if(Reflect.has(target,`${propertyKey}_url`)){
 
                 //替换对应URI
-                target[`${propertyKey}_url`] = target[`${propertyKey}_url`].replace(/^[\/~]/,this.URI+'/');
+                let url = target[`${propertyKey}_url`];
+                if(!/^(http[s]?:|ws:|\/)/.test(url)){
+                    target[`${propertyKey}_url`] = this.URI+'/'+url;
+                }
 
                 //修理一下，这里可以用标准的target,property处理
                 requestUrl = getPathString(target,propertyKey,args);

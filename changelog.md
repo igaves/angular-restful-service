@@ -8,6 +8,17 @@ Angular Restful Injectable Service 。
 
 ## usage
     npm install angular-restful-service --save
+    
+### change logs 0.3.40 add QUERY's param
+
+```typescript  
+     @GET('/assets')
+    getById(@QUERY('id') id:number){ return null}
+    
+    //equal
+    @GET('/assets')
+    getBy(@QUERY() params:Object){ return null}
+    
 
 
 ### change logs 0.3.34 deprecated `~`,use `/` instead

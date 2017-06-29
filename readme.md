@@ -1,6 +1,6 @@
 # RestfulService For Angular 
 
-@version 0.3.31
+@version 0.3.35
 
 Angular Restful Injectable Service 。
 
@@ -75,14 +75,19 @@ use @BODY to defined post/put/patch body
 user @QUERY to defiend query params
 ```typescript  
 
-    @get("/:id/users")
-    public getUsers(@PATH() id:number|string,@QUERY params:Object){return null}
+    @GET("/:id/users")
+    public getUsers(@PATH() id:number|string,@QUERY() params:Object){return null}
     
     //then in component
     this.service.getUsers(params["id"],{
         page:1,
         offset:234
     }).subscribe(...);
+    
+    // set query params key in QUERY decorator like 'id';
+    @GET()
+    public getUserById(@QUERY('id') id:Number):Observable<User>{return null}
+    
 ```  
  
  you can set the request type
